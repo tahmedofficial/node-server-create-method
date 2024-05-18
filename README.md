@@ -9,22 +9,25 @@ npm init -y
 2. Commands in bash
 
 ```bash
-npm i express cors mongodb dotenv
+npm i express cors mongodb dotenv jsonwebtoken cookie-parser
 ```
 
-2. Copy the code and past it index.js file
+3. Copy the code and past it index.js file
 
 ```js
 const express = require('express');
 const cors = require('cors');
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// middleWere
+// middleware
 app.use(cors({origin: ["http://localhost:5173",],credentials: true,}));
 app.use(express.json());
+app.use(cookieParser());
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ufkobjs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -39,7 +42,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-
+        
         const database = client.db("databaseName");
         const menuCollection = database.collection("collectionName");
 
@@ -69,4 +72,12 @@ app.listen(port, () => {
 })
 ```
 
-# Server Setup Done
+4. Create dotenv file and past it
+
+```
+DB_USER=Username
+DB_PASS=Password
+SECRET_TOKEN=64bit token
+```
+
+## Server Setup Done
