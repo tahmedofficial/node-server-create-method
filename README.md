@@ -1,12 +1,12 @@
 ## Server Create Method
 
-1. Commands in bash
+1. Command in bash
 
 ```bash
 npm init -y
 ```
 
-2. Commands in bash
+2. Command in bash
 
 ```bash
 npm i express cors mongodb dotenv jsonwebtoken cookie-parser
@@ -75,9 +75,15 @@ app.listen(port, () => {
 4. Create dotenv file and past it
 
 ```
-DB_USER=Username
-DB_PASS=Password
+DB_USER=Username from mongoDB
+DB_PASS=Password from mongoDB
 SECRET_TOKEN=64bit token
+```
+
+5. Command in node for create SECRET_TOKEN
+
+```bash
+require("crypto").randomBytes(64).toString("hex")
 ```
 
 ## Server Setup Done
